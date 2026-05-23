@@ -2,46 +2,227 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
-<title>MATTBEAR - WORD$LOTS Mother's Day Edition</title>
-<meta name="theme-color" content="#b3001b">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1,viewport-fit=cover">
+<title>MATTBEAR - Word$lots! Mother's Day</title>
+<meta name="theme-color" content="#c2185b">
 <link rel="manifest" href="manifest.json">
 <style>
-body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(#3d0008,#120002);color:#fff;overflow:hidden}
-.app{display:flex;flex-direction:column;height:100vh}
-.header{padding:12px;text-align:center;font-size:2rem;font-weight:700;color:#ffe3a1;text-shadow:0 0 12px #ff004c}
-.reels{flex:1;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:10px}
-.tile{background:linear-gradient(#fff2d8,#9d0017);border:3px solid gold;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;aspect-ratio:1/1;box-shadow:0 0 12px rgba(255,0,85,.5)}
-.controls{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:10px}
-button{padding:16px;border:none;border-radius:14px;background:#ff004c;color:#fff;font-size:1rem;font-weight:700}
-.footer{text-align:center;padding:8px;font-size:.8rem;color:#ffd9d9}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{
+margin:0;
+font-family:Bahnschrift,Arial,sans-serif;
+background:radial-gradient(circle at top,#ff7eb6 0%,#5b0022 45%,#14000a 100%);
+color:#fff;
+overflow:hidden;
+height:100vh;
+}
+.app{
+display:flex;
+flex-direction:column;
+height:100vh;
+padding-bottom:env(safe-area-inset-bottom);
+}
+.header{
+padding:10px;
+text-align:center;
+font-size:clamp(1.7rem,5vw,2.5rem);
+font-weight:900;
+letter-spacing:2px;
+color:#fff2bf;
+text-shadow:0 0 18px #ff0080;
+}
+.topbar{
+display:flex;
+justify-content:space-between;
+padding:0 12px 8px;
+font-size:.95rem;
+font-weight:700;
+}
+.machine{
+margin:0 10px;
+border-radius:24px;
+padding:10px;
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(8px);
+box-shadow:0 0 24px rgba(255,0,119,.35);
+}
+.reels{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:8px;
+position:relative;
+}
+.tile{
+background:linear-gradient(180deg,#fff7d6,#ff8bb9);
+border:3px solid #ffe57f;
+border-radius:18px;
+min-height:74px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:clamp(.9rem,4vw,1.3rem);
+font-weight:900;
+color:#70001f;
+box-shadow:0 0 16px rgba(255,255,255,.25);
+transition:.12s transform ease;
+user-select:none;
+}
+.tile.hit{
+animation:hit .5s ease;
+background:linear-gradient(180deg,#fff,#ffe066);
+}
+@keyframes hit{
+0%{transform:scale(1)}
+50%{transform:scale(1.12)}
+100%{transform:scale(1)}
+}
+.paylines{
+padding:8px 12px 0;
+font-size:.82rem;
+line-height:1.4;
+color:#ffe8f5;
+}
+.controls{
+display:grid;
+grid-template-columns:1fr 1fr 1fr;
+gap:8px;
+padding:12px;
+}
+button{
+border:none;
+border-radius:18px;
+padding:16px 10px;
+font-size:1rem;
+font-weight:900;
+background:linear-gradient(180deg,#ff4fa0,#c00052);
+color:#fff;
+box-shadow:0 4px 14px rgba(0,0,0,.35);
+}
+button:active{transform:scale(.97)}
+.message{
+text-align:center;
+font-size:1rem;
+font-weight:700;
+min-height:24px;
+padding:0 10px;
+color:#fff3bf;
+}
+.footer{
+margin-top:auto;
+text-align:center;
+padding:8px;
+font-size:.72rem;
+opacity:.8;
+}
+@media (max-width:420px){
+.tile{min-height:62px;border-radius:14px}
+.controls button{padding:14px 6px;font-size:.92rem}
+}
 </style>
 </head>
 <body>
 <div class="app">
 <div class="header">WORD$LOTS 💖</div>
-<div class="reels">
-<div class="tile">MOM</div>
-<div class="tile">LOVE</div>
-<div class="tile">QUEEN</div>
-<div class="tile">💎</div>
-<div class="tile">🌹</div>
-<div class="tile">💋</div>
-<div class="tile">🎁</div>
-<div class="tile">💌</div>
-<div class="tile">💖</div>
-<div class="tile">👑</div>
-<div class="tile">🍫</div>
-<div class="tile">💵</div>
+<div class="topbar">
+<div>COINS: <span id="coins">5000</span></div>
+<div>BET: <span id="bet">50</span></div>
 </div>
+<div class="machine">
+<div class="reels" id="reels"></div>
+</div>
+<div class="paylines">
+💘 MOM x3 = 500x • 👑 x3 = 100x • LOVE line = 50x • Any Hearts = bonus tease
+</div>
+<div class="message" id="message">Tap SPIN to play 🌹</div>
 <div class="controls">
-<button>SPIN</button>
-<button>BET</button>
-<button>AUTO</button>
+<button id="spinBtn">SPIN</button>
+<button id="betBtn">BET +</button>
+<button id="autoBtn">AUTO</button>
 </div>
 <div class="footer">MATTBEAR • bearicide.github.io</div>
 </div>
 <script>
+const symbols=['MOM','LOVE','👑','💖','🌹','💋','🎁','💌','🍫','💎'];
+const reels=document.getElementById('reels');
+const msg=document.getElementById('message');
+const coinsEl=document.getElementById('coins');
+const betEl=document.getElementById('bet');
+let coins=5000;
+let bet=50;
+let auto=false;
+const bets=[10,25,50,100,250,500];
+
+function drawBoard(values){
+reels.innerHTML='';
+values.forEach((v,i)=>{
+const d=document.createElement('div');
+d.className='tile';
+d.textContent=v;
+d.id='tile-'+i;
+reels.appendChild(d);
+});
+}
+
+function randomBoard(){
+return Array.from({length:12},()=>symbols[Math.floor(Math.random()*symbols.length)]);
+}
+
+function evaluate(board){
+let win=0;
+const lines=[[0,1,2],[4,5,6],[8,9,10],[0,5,10],[2,5,8]];
+lines.forEach(line=>{
+const vals=line.map(i=>board[i]);
+if(vals.every(v=>v==='MOM')){win+=bet*500;flash(line)}
+else if(vals.every(v=>v==='👑')){win+=bet*100;flash(line)}
+else if(vals.join('')==='LOVELOVELOVE'){win+=bet*50;flash(line)}
+});
+const hearts=board.filter(v=>v==='💖').length;
+if(hearts>=3){win+=bet*5}
+return win;
+}
+
+function flash(line){
+line.forEach(i=>{
+const el=document.getElementById('tile-'+i);
+if(el)el.classList.add('hit');
+});
+}
+
+function spin(){
+if(coins<bet){msg.textContent='Out of coins 💀';return}
+coins-=bet;
+coinsEl.textContent=coins;
+msg.textContent='Spinning...';
+let ticks=0;
+const anim=setInterval(()=>{
+drawBoard(randomBoard());
+ticks++;
+if(ticks>10){
+clearInterval(anim);
+const finalBoard=randomBoard();
+drawBoard(finalBoard);
+const payout=evaluate(finalBoard);
+coins+=payout;
+coinsEl.textContent=coins;
+msg.textContent=payout>0?`WIN ${payout} 🎉`:'No win — try again';
+if(auto)setTimeout(spin,700);
+}
+},70);
+}
+
+document.getElementById('spinBtn').onclick=spin;
+document.getElementById('betBtn').onclick=()=>{
+const idx=(bets.indexOf(bet)+1)%bets.length;
+bet=bets[idx];
+betEl.textContent=bet;
+};
+document.getElementById('autoBtn').onclick=(e)=>{
+auto=!auto;
+e.target.textContent=auto?'STOP':'AUTO';
+if(auto)spin();
+};
+
+drawBoard(randomBoard());
 if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js')}
 </script>
 </body>
