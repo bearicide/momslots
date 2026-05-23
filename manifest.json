@@ -1,0 +1,10 @@
+{
+  "name": "MATTBEAR - WORD$LOTS Mother's Day Edition",
+  "short_name": "WORD$LOTS",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#1a0003",
+  "theme_color": "#b3001b",
+  "orientation": "portrait",
+  "icons": []
+}
