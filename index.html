@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>MATTBEAR - WORD$LOTS Mother's Day Edition</title>
+<meta name="theme-color" content="#b3001b">
+<link rel="manifest" href="manifest.json">
+<style>
+body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(#3d0008,#120002);color:#fff;overflow:hidden}
+.app{display:flex;flex-direction:column;height:100vh}
+.header{padding:12px;text-align:center;font-size:2rem;font-weight:700;color:#ffe3a1;text-shadow:0 0 12px #ff004c}
+.reels{flex:1;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:10px}
+.tile{background:linear-gradient(#fff2d8,#9d0017);border:3px solid gold;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;aspect-ratio:1/1;box-shadow:0 0 12px rgba(255,0,85,.5)}
+.controls{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:10px}
+button{padding:16px;border:none;border-radius:14px;background:#ff004c;color:#fff;font-size:1rem;font-weight:700}
+.footer{text-align:center;padding:8px;font-size:.8rem;color:#ffd9d9}
+</style>
+</head>
+<body>
+<div class="app">
+<div class="header">WORD$LOTS 💖</div>
+<div class="reels">
+<div class="tile">MOM</div>
+<div class="tile">LOVE</div>
+<div class="tile">QUEEN</div>
+<div class="tile">💎</div>
+<div class="tile">🌹</div>
+<div class="tile">💋</div>
+<div class="tile">🎁</div>
+<div class="tile">💌</div>
+<div class="tile">💖</div>
+<div class="tile">👑</div>
+<div class="tile">🍫</div>
+<div class="tile">💵</div>
+</div>
+<div class="controls">
+<button>SPIN</button>
+<button>BET</button>
+<button>AUTO</button>
+</div>
+<div class="footer">MATTBEAR • bearicide.github.io</div>
+</div>
+<script>
+if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js')}
+</script>
+</body>
+</html>
