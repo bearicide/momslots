@@ -41,10 +41,12 @@ Mobile-first emotional slot/PWA project combining:
 - Reel-bed redesign
 - Asset optimization
 
-## Live Link
-momslots — https://bearicide.github.io/momslots/
+## Links
+momslots — live: https://bearicide.github.io/momslots/
+momslots — repo: https://github.com/bearicide/momslots
 
-## Repo Link
-momslots — https://github.com/bearicide/momslots
+## Push Log
+- Pass 1 operations lane pushed.
+- Repo-name-first live link formatting pushed.
 
 MATTBEAR • bearicide.github.io
